@@ -1,14 +1,53 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      5 Ayah Daily
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-card>
+
+    <ion-item> 
+      <ion-button fill="clear" (click)="play('an-naba.mp3'); showToggleFun()" *ngIf="showToggle">
+        <ion-icon name="play"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" (click)="stop(); showToggleFun()" *ngIf="!showToggle">
+        <ion-icon name="pause"></ion-icon>
+      </ion-button>
+
+      <ion-col size="5">
+        <ion-label>An - Naba</ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-input type="number" placeholder="1" text-center></ion-input>
+      </ion-col>
+      <ion-label>-</ion-label>
+      <ion-col>
+        <ion-input type="number" placeholder="40" text-center></ion-input>
+      </ion-col>
+    </ion-item>
+
+
+    <ion-item> 
+      <ion-button fill="clear" href="#">
+        <ion-icon name="play" slot="start"></ion-icon>
+      </ion-button>
+
+      <ion-col size="5">
+        <ion-label>An - Nazi'at</ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-input type="number" placeholder="1" text-center></ion-input>
+      </ion-col>
+      <ion-label>-</ion-label>
+      <ion-col>
+        <ion-input type="number" placeholder="40" text-center></ion-input>
+      </ion-col>
+    </ion-item>
+
+  </ion-card>
 </ion-content>
