@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 @Component({
   selector: 'app-home',
@@ -9,29 +8,48 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
 })
 export class HomePage {
 
-    onSuccess: any;
-    onError: any;
-    showToggle = true;
+    audio: any;
+    Surah = [['An-Naba', true], ['An-Naziat', true], ['Abasa', true]];
+    SurahDetail = [
+        {
+            
+        }
+    ];
 
-    constructor(private nativeAudio: NativeAudio) { }
+    play(surahName: string) {
+        let resolved: any;
+        console.log(this.audio, surahName);
+        if (this.audio) {
+            let surahNameNow = this.audio.src.split('/');
+            surahNameNow = surahNameNow[surahNameNow.length - 1];
+            if ( surahNameNow !== surahName ) {
+                this.audio.pause();
+                this.audio = null;
 
-    play(mp3: string) {
-        this.nativeAudio.preloadSimple('track1', './mp3/' + mp3).
-            then(()=>{console.log('Playing')});
-        this.nativeAudio.play('track1');
+                this.audio = new Audio();
+                this.audio.src = '../../mp3/' + surahName;
+                this.audio.load();
+            }
+            this.audio.play();
+            this.audio.loop = true;
+        } else {
+            this.audio = new Audio();
+            this.audio.src = '../../mp3/' + surahName;
+            this.audio.load();
+            resolved = this.audio.play();
+            this.audio.loop = true;
+        }
+        return false;
+    }
+
+    pause() {
+        console.log('Pause');
+        this.audio.pause();
     }
 
     stop() {
-        this.nativeAudio.stop('track1').
-            then(()=>{console.log('Stopped')});
-    }
-
-
-    showToggleFun() {
-        if (this.showToggle === true) {
-            this.showToggle = false;
-        } else {
-            this.showToggle = true;
-        }
+        console.log('Stop');
+        this.audio.pause();
+        this.audio = null;
     }
 }
