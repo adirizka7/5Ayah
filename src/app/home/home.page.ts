@@ -11,9 +11,7 @@ export class HomePage {
     audio: any;
     Surah = [['An-Naba', true], ['An-Naziat', true], ['Abasa', true]];
     SurahDetail = [
-        {
-            
-        }
+        {}
     ];
 
     play(surahName: string) {
@@ -34,7 +32,7 @@ export class HomePage {
             this.audio.loop = true;
         } else {
             this.audio = new Audio();
-            this.audio.src = '../../mp3/' + surahName;
+            this.audio.src = '../../mp3/' + surahName + '#t=10,15';
             this.audio.load();
             resolved = this.audio.play();
             this.audio.loop = true;
